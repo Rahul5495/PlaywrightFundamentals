@@ -13,6 +13,7 @@ test("context with options", async({browser})=>{
           await page.goto("https://app.vwo.com/#login");
           await page.close();
           await context.close();
+          await browser.close();
 });
 
 test("Mobile context", async({browser})=>{
@@ -28,4 +29,5 @@ test("Mobile context", async({browser})=>{
            await page.goto("https://app.vwo.com/#login");
            await page.close();
            await context.close();
+           await browser.close();
 });
