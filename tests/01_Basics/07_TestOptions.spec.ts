@@ -24,7 +24,7 @@ test("Mobile context", async({browser})=>{
         hasTouch: true,
     }
    const context:BrowserContext= await browser.newContext(iPhone);
-             const page:Page= await context.newPage();
+           const page:Page= await context.newPage();
            await page.goto("https://app.vwo.com/#login");
            await page.close();
            await context.close();
