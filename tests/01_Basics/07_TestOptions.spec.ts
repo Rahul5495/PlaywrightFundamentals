@@ -3,7 +3,7 @@ import {test, expect, Page, BrowserContext} from "@playwright/test";
 
 test("context with options", async({browser})=>{
         const context= await browser.newContext({
-            viewport: {width:1920, height: 1080},
+            viewport: {width:1234, height: 870},
             locale: "fr-FR",
             timezoneId: "Europe/Paris",
             geolocation:{latitude:48.8556, longitude:2.3522},
