@@ -13,7 +13,7 @@ test("Task: Invalid Login & URL Validation", async({page})=>{
      console.log(button);
      await page.locator("//button[@type='submit']").click();
      
-     await expect(page).toHaveURL("https://app.thetestingacademy.com/playwright/multiple_element_filter");
+     await expect(page).toHaveURL("https://app.thetestingacademy.com/playwright/multiple_element_filter?email=abcd%40gmail.com&password=abcd%401234&remember=yes#login-success");
      await page.pause();
 
 });

@@ -11,6 +11,7 @@ test("TC_Verify katalon cura make appointment page", async () => {
      await page.locator("#txt-username").fill("John Doe");
      await page.locator("#txt-password").fill("ThisIsNotAPassword");
      await page.getByRole("button", { name: "Login" }).click();
+     
      let verifyMessage= page.getByRole("heading", { name: "Make Appointment", exact: true })
      await expect(verifyMessage).toHaveText("Make Appointment");
 
