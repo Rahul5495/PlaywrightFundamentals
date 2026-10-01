@@ -10,7 +10,6 @@ test("Verify OrangeHRM to add employee", async ({ page }) => {
     await page.getByPlaceholder("Password", { exact: true }).fill("admin123");
     await page.getByRole("button", { name: " Login " }).click();
 
-    // await page.waitForURL("**/dashboard/");
     await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
 
     await page.locator("//a[contains(@href, 'viewPimModule')]").click();
