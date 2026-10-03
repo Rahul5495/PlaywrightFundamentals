@@ -10,3 +10,6 @@ node_modules/
 .env
 #stray codegen screenshot
 abc.png
+A.png
+ArrowLeft.png
+o.png
