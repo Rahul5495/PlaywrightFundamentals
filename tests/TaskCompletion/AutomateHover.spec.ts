@@ -1,6 +1,5 @@
 
 import { test, expect } from "@playwright/test";
-import { json } from "node:stream/consumers";
 
 test("perform mouse over", async ({ page }) => {
 
