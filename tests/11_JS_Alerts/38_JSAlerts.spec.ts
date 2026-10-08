@@ -4,12 +4,10 @@ import { test, expect } from "@playwright/test"
 test.describe("Different Javascript Alerts", () => {
 
     test.beforeEach(async ({ page }) => {
-        await page.goto("https://the-internet.herokuapp.com/javascript_alerts", { waitUntil: "domcontentloaded" });
+        await page.goto("https://the-internet.herokuapp.com/javascript_alerts", { waitUntil: "domcontentloaded", timeout: 60000 });
     });
 
     test("JS Alert accept 1", async ({ page }) => {
-        // test.setTimeout(60000);
-        await page.getByRole("button", { name: "Click for JS Alert" }).click();
 
         page.once("dialog", async dialog => {
             console.log("Alert type: ", dialog.type());
@@ -18,8 +16,9 @@ test.describe("Different Javascript Alerts", () => {
             await dialog.accept();
 
         });
-        await page.waitForTimeout(5000);
-        await page.close();
+        await page.getByRole("button", { name: "Click for JS Alert" }).click();
+        // await page.waitForTimeout(5000);
+        // await page.close();
     });
 
     test("JS Alert accept 2", async ({ page }) => {
