@@ -7,9 +7,18 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 /allure-results/
-.env
+.env 
+
 #stray codegen screenshot
 abc.png
 A.png
 ArrowLeft.png
 o.png
+
+# downloaded files from the download lesson
+/out/
+sample-download.txt
+
+# saved auth state (contains live session cookies)
+user-session.json
+*storage*.json
