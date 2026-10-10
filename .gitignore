@@ -21,4 +21,5 @@ sample-download.txt
 
 # saved auth state (contains live session cookies)
 user-session.json
+TTALogin-session.json
 *storage*.json
