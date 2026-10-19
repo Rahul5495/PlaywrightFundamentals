@@ -20,6 +20,7 @@ import type { LoginRow } from './Utils/yamlReader';
  * If you need one real test() per row from an async source, pre-generate a
  * JSON file in globalSetup and import that synchronously instead.
  */
+
 const XLSX_PATH = path.join(__dirname, 'test-data', 'login-data.xlsx');
 const APP_URL = 'https://app.thetestingacademy.com/playwright/multiple_element_filter';
 

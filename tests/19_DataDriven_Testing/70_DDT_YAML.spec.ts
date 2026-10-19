@@ -12,6 +12,7 @@ import { readYAML, type LoginRow } from './Utils/yamlReader';
  * Compare with 287 (Excel) and 289 (MySQL), where the reader is async and the
  * rows have to be replayed as test.step()s inside one test instead.
  */
+
 const YAML_PATH = path.join(__dirname, 'test-data', 'login-data.yaml');
 const APP_URL = 'https://app.thetestingacademy.com/playwright/multiple_element_filter';
 

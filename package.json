@@ -14,7 +14,8 @@
     "@types/node": "^26.6.3",
     "allure-playwright": "^3.12.2",
     "exceljs": "^4.4.0",
-    "js-yaml": "^5.5.0"
+    "js-yaml": "^5.5.0",
+    "mysql2": "^3.24.6"
   },
   "dependencies": {
     "@faker-js/faker": "^10.6.0",
