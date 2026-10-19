@@ -10,8 +10,11 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^26.6.3",
-    "allure-playwright": "^3.12.2"
+    "allure-playwright": "^3.12.2",
+    "exceljs": "^4.4.0",
+    "js-yaml": "^5.5.0"
   },
   "dependencies": {
     "@faker-js/faker": "^10.6.0",
