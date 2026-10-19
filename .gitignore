@@ -23,3 +23,13 @@ sample-download.txt
 user-session.json
 TTALogin-session.json
 *storage*.json
+
+# downloaded files from the download lesson
+/out/
+outsample-download.txt
+
+# fs lesson output
+tests/**/out/
+
+# stray fs-lesson output
+/output.json
