@@ -3,13 +3,11 @@
 Hands-on Playwright + TypeScript practice repo used in **The Testing Academy** Playwright Fundamentals batch.
 Everything here is beginner friendly: install Playwright, run the sample tests, record your own tests with codegen, and read the HTML report.
 
-> Maintained by [Pramod Dutta](https://github.com/PramodDutta) · [The Testing Academy](https://thetestingacademy.com)
+> Maintained by [Rahul Mangate](https://github.com/Rahul5495)
 
 ---
 
 ## Playwright architecture
-
-![Playwright Architecture - The Testing Academy](docs/images/playwright-architecture.png)
 
 Playwright is a **client-server** tool. Understanding the three tiers explains most of its behaviour:
 
@@ -45,8 +43,8 @@ Download Node.js from https://nodejs.org (pick the LTS build).
 ## 2. Clone and install
 
 ```bash
-git clone https://github.com/PramodDutta/LearningPlaywrightFundamentals3x.git
-cd LearningPlaywrightFundamentals3x
+git clone https://github.com/Rahul5495/PlaywrightFundamentals.git
+cd PlaywrightFundamentals
 
 # install project dependencies (@playwright/test, @types/node)
 npm install
@@ -70,8 +68,8 @@ Only need one browser? `npx playwright install chromium`
 If you want to build this project yourself instead of cloning, this is the exact flow:
 
 ```bash
-mkdir LearningPlaywrightFundamentals3x
-cd LearningPlaywrightFundamentals3x
+mkdir PlaywrightFundamentals
+cd PlaywrightFundamentals
 
 npm init -y
 npm init playwright@latest
@@ -108,121 +106,152 @@ npx playwright install
 
 ```
 LearningPlaywrightFundamentals3x/
-├── tests/                     # numbered curriculum, one folder per topic (see section 5)
+├── tests/
 │   ├── 01_Basics/
-│   │   ├── 216_example.spec.ts       # title assertions on playwright.dev (viewer + admin)
-│   │   ├── 217_multiple_context.ts   # two isolated sessions in one browser
-│   │   ├── 218_normal_pw.ts          # raw library script: Browser -> Context -> Page
-│   │   ├── 219_tta-check.spec.ts     # login flow on the TTA practice site (codegen)
-│   │   ├── 220_BCP.spec.ts           # the three-level hierarchy, logged step by step
-│   │   ├── 221_TA.spec.ts            # three role contexts via the browser fixture
-│   │   └── 222_Test_Options.spec.ts  # viewport, locale, timezone, geolocation, mobile
+│   │   ├── 01_example.spec.ts
+│   │   ├── 02_tta-check.spec.ts
+│   │   ├── 03_multipleContext.ts
+│   │   ├── 04_normalPlaywright.ts
+│   │   ├── 05_BCP.ts
+│   │   ├── 06_TA.spec.ts
+│   │   └── 07_TestOptions.spec.ts
 │   ├── 02_TestAnnotations/
-│   │   ├── 223_TestAnnotations.spec.ts  # skip, only, fail, fixme, slow
-│   │   └── 224_TestDescribe.spec.ts     # grouping tests with describe
+│   │   ├── 08_TestAnnotations.spec.ts
+│   │   └── 09_TestDescribe.spec.ts
 │   ├── 03_Locator_Commands/
-│   │   ├── 225_LC.spec.ts            # goto options: waitUntil, timeout, referer
-│   │   ├── 226_Refere.spec.ts        # context-wide referer via extraHTTPHeaders
-│   │   ├── 227_Fresh.spec.ts         # CSS selectors on the VWO login form
-│   │   ├── 228_Project3.spec.ts      # XPath, strict mode and .first()
-│   │   ├── 229_getByRole.spec.ts     # role locators on the VWO login form
-│   │   └── 230_getByRole.spec.ts     # role locators, link vs button
+│   │   ├── 10_LC.spec.ts
+│   │   ├── 11_Refere.spec.ts
+│   │   ├── 12_Fresh.spec.ts
+│   │   ├── 13_Project3.spec.ts
+│   │   ├── 14_getByRole.spec.ts
+│   │   └── 15_getByRole1.spec.ts
 │   ├── 04_Session_Storage/
-│   │   ├── 231_SessionStorage.ts     # log in once, save cookies + localStorage
-│   │   └── 232_TestWingify.spec.ts   # three tests reusing the saved session
+│   │   ├── 16_SessionStorage.ts
+│   │   └── 17_TestWingify.spec.ts
 │   ├── 05_Allure_Reporting/
-│   │   ├── 233_Custom_Report_TestWingify.spec.ts  # run against the custom reporter
-│   │   └── 234_Media_Custom_Report.spec.ts        # screenshot + video + trace
+│   │   └── 18_GenerateReport.spec.ts
 │   ├── 06_Multiple_Element_Filter/
-│   │   ├── 235_ME.spec.ts            # allInnerTexts, then act on a match
-│   │   └── 236_ME.spec.ts            # all() -> Locator[], read href per link
-│   ├── 07_WebTables/
-│   │   ├── 237_TestCase.spec.ts      # row loop, cells via allInnerTexts
-│   │   ├── 238_TestCase.spec.ts      # dynamic XPath + following-sibling
-│   │   ├── 239_TestCase.spec.ts      # filter({ hasText }) on a link list
-│   │   ├── 240_TestCase.spec.ts      # tr:has(td:text()) row selection
-│   │   ├── 241_WebTable_Pagination.spec.ts   # page-by-page search, inline
-│   │   └── 242_WebTable_Pagination.spec.ts   # same search as a helper
-│   ├── 08_Web_Select_Frames_Iframe/
-│   │   ├── 243_Select_TestCase.spec.ts       # native <select> via selectOption
-│   │   ├── 244_CustomDropDown_TestCase.spec.ts     # click-then-pick custom menu
-│   │   └── 245_AdvacneCustomDropDown_TestCase.spec.ts  # searchable, multi, async
-│   ├── 09_Frame_Iframe/
-│   │   ├── 246_Iframe_TestCase.spec.ts       # a form inside one iframe
-│   │   ├── 247_Framework_TestCase.spec.ts    # enumerate frames on a frameset
-│   │   └── 248_Nested_Iframe_TestCase.spec.ts      # three levels of nesting
-│   ├── 10_Keyboard_Hover_Drag_Drop_Calender/
-│   │   ├── 249_TestCase.spec.ts          # keyboard press, modifiers
-│   │   ├── 250_Hover_TestCase.spec.ts    # dragTo with force
-│   │   ├── 251_Drag_Drop.spec.ts         # dragTo, the simple case
-│   │   ├── 252_Advance_Drag_Drop.spec.ts # manual mouse drag with steps
-│   │   └── 253_Context_Drag_Drop.spec.ts # right click and read the menu
+│   │   ├── 19_MultipleFilter.spec.ts
+│   │   └── 20_ME.spec.ts
+│   ├── 07_Webtables/
+│   │   ├── 21_Webtable_Handle.spec.ts
+│   │   ├── 22_InconsistentWebtable.spec.ts
+│   │   ├── 23_UsingFilterFunction.spec.ts
+│   │   ├── 24_WebtableUsingPseudo.spec.ts
+│   │   ├── 25_Webtable_Pagination.spec.ts
+│   │   └── 26_WebtablePagination_UsingFunction.spec.ts
+│   ├── 08_WebSelect_Dropdown/
+│   │   ├── 27_SelectDropdown.spec.ts
+│   │   ├── 28_CustomDropdown.spec.ts
+│   │   └── 29_AdvanceCustomDropdown.spec.ts
+│   ├── 09_Frames_iframe/
+│   │   ├── 30_iFrame.spec.ts
+│   │   ├── 31_MultiFrame.spec.ts
+│   │   └── 32_NestedFrames.spec.ts
+│   ├── 10_Keyboard_Hover_DragDrop/
+│   │   ├── 33_Keyboard.spec.ts
+│   │   ├── 34_Hover.spec.ts
+│   │   ├── 35_DragAndDrop.spec.ts
+│   │   ├── 36_AdvanceDragAndDrop.spec.ts
+│   │   └── 37_ContextDragDrop.spec.ts
 │   ├── 11_JS_Alerts/
-│   │   └── 254_JS_Alerts.spec.ts         # dialog events, on vs once
+│   │   └── 38_JSAlerts.spec.ts
 │   ├── 12_Handle_SVG/
-│   │   ├── 255_SVG_TestCase.spec.ts      # svg click on a live site
-│   │   ├── 256_SVG_Advance_TC.spec.ts    # shapes, chart bars, ARIA roles
-│   │   ├── 257_SVG_Map_TC.spec.ts        # map paths via namespace-aware XPath
-│   │   └── 258_SVG_Map_TC_Optimized.spec.ts   # same map, CSS path selector
+│   │   ├── 39_SVG_Testcase.spec.ts
+│   │   ├── 40_SVG_Advance.spec.ts
+│   │   ├── 41_SVG_Map.spec.ts
+│   │   └── 42_SVG_Map_Optimized.spec.ts
 │   ├── 13_Shadow_DOM/
-│   │   └── 259_Shadow_DOM_TC.spec.ts     # locators pierce open shadow roots
+│   │   └── 43_Shadow_DOM.spec.ts
 │   ├── 14_FileUpload/
-│   │   ├── 260_FileUpload_TC.spec.ts     # one file from disk, asserted
-│   │   ├── 261_FileUpload_TC.spec.ts     # single upload on the TTA widget
-│   │   ├── 262_Multiple_FileUpload_TC.spec.ts      # in-memory Buffer files
-│   │   ├── 263_Multiple_FileUpload_Disk_TC.spec.ts # two real jpgs from disk
-│   │   ├── 264_Mixed_FileUpload_TC.spec.ts         # pdf + jpg + doc together
-│   │   ├── 265_FileUpload_OtherDir_TC.spec.ts      # fixtures in test-data/
-│   │   └── *.jpg, *.pdf, *.doc           # upload fixtures
-│   ├── 15_File_Download/
-│   │   └── 266_FileDownload_TC.spec.ts   # waitForEvent before the click
-│   ├── 16_Scroll_toElement/
-│   │   ├── 267_Scroll_TC.spec.ts         # four ways to move the page
-│   │   ├── 268_Lazy_Scroll_TC.spec.ts    # lazy list + expect.poll
-│   │   └── 269_Abort_Signal_Scroll_TC.spec.ts  # cancelling a wait
+│   │   ├── 44_FileUpload.spec.ts
+│   │   ├── 45_File_Upload.spec.ts
+│   │   ├── 46_Multi_FileUpload.spec.ts
+│   │   ├── 47_Multi_FileUpload_Dictionary.spec.ts
+│   │   ├── 48_Mixed_FileUpload.spec.ts
+│   │   ├── 49_FileUpload_OtherDir.spec.ts
+│   │   ├── TestData.txt
+│   │   ├── file1.jpg
+│   │   ├── file2.jpg
+│   │   ├── sample.doc
+│   │   ├── sample.jpg
+│   │   └── sample.pdf
+│   ├── 15_FileDownload/
+│   │   └── 50_FileDownload_TC.spec.ts
+│   ├── 16_ScrollToElement/
+│   │   ├── 51_ScrollTo.spec.ts
+│   │   ├── 52_Lazy_ScrollTo.spec.ts
+│   │   └── 53_AbortSignal_Scroll.spec.ts
 │   ├── 17_Expect_Assertions/
-│   │   ├── 270_Expect1.spec.ts           # plain value matchers
-│   │   ├── 271_Expect2.spec.ts           # web-first matchers
-│   │   ├── 272_Expect3.spec.ts           # soft assertions + negation
-│   │   ├── 273_Expect4.spec.ts           # visible, enabled, checked
-│   │   └── Expect_CheatSheet.md          # full matcher reference
-│   └── 18_Test_hooks/
-│       ├── 274_Test.spec.ts              # conditional skip / slow / fail
-│       ├── 276_Test.spec.ts              # test.step breakdowns
-│       ├── 277_Tk.spec.ts                # beforeAll/Each, afterEach/All
-│   │   ├── 278.td.spec.ts                # describe.serial
-│   │   └── 279.tp.spec.ts                # tags and --grep
-│   └── 19_Data_Driven_Testing/
-│       ├── 284_DDT_JSON_ARRAY.spec.ts    # inline array
-│       ├── 285_DDT_CSV.spec.ts           # CSV reader
-│       ├── 286_JSON_DDT.spec.ts          # JSON file
-│       ├── 287_DDT_EXCEL.spec.ts         # .xlsx, async -> test.step
-│       ├── 288_DDT_YAML.spec.ts          # YAML, sync -> test per row
-│       ├── 289_DDT_MYSQL.spec.ts         # MySQL, skips if unconfigured
-│       ├── 290_DDT_FAKER.spec.ts         # generated, seeded
-│   │   ├── util/                         # csv, excel, yaml, db readers
-│   │   └── test-data/                    # csv, yaml, xlsx, json, seed.sql
-│   └── 20_Page_Object_Model/
-│       ├── 291_No_POM.spec.ts            # the same test without page objects
-│       ├── 292_POM.spec.ts               # the same test with LoginPage
-│       ├── 293_cart_add_assertion.spec.ts # login -> add item -> verify cart
-│       ├── 294_heavy_page.spec.ts        # locators are lazy, methods shared
-│       └── pages/                        # LoginPage, InventoryPage, CartPage, HeavyPage
-
-├── template/template.spec.ts  # starting skeleton for a new spec
-├── test-data/uploads/         # shared upload fixtures (see section 32)
-├── tsconfig.json              # needed for Node globals (fs, __dirname) in the editor
-├── ai/                        # RCA + flaky-analysis agents used by the reporter
-├── utils/CustomReporter.ts    # custom HTML reporter (TTA branded)
-├── utils/stepScreenshot.ts    # per-step screenshots for that reporter
-├── docs/images/               # architecture diagram (png + html source)
-├── playwright.config.ts       # testDir, reporter, trace, headless, projects
+│   │   ├── 54_Expect1.spec.ts
+│   │   ├── 55_Expect2.spec.ts
+│   │   ├── 56_Expect3.spec.ts
+│   │   ├── 57_Expect4.spec.ts
+│   │   └── Expect_CheatSheet.md
+│   ├── 18_TestHooks/
+│   │   ├── 58_Test.spec.ts
+│   │   ├── 59_TestStep.spec.ts
+│   │   ├── 60_TestExecution.spec.ts
+│   │   ├── 61_TestDescribe.spec.ts
+│   │   ├── 62_TestPriority.spec.ts
+│   │   ├── Chromiun_aRG_List.md
+│   │   └── TestHooks_CheatSheet.md
+│   ├── 19_DataDriven_Testing/
+│   │   ├── 63_DDT.spec.ts
+│   │   ├── 64_Login_DDT.spec.ts
+│   │   ├── 65_Read_Write_FS.ts
+│   │   ├── 66_DDT_JsonArray.spec.ts
+│   │   ├── 67_DDT_CSV.spec.ts
+│   │   ├── 68_DDT_JSON.spec.ts
+│   │   ├── 69_DDT_EXCEL.spec.ts
+│   │   ├── 70_DDT_YAML.spec.ts
+│   │   ├── 71_DDT_MySQL.spec.ts
+│   │   ├── 72_DDT_FAKER.spec.ts
+│   │   ├── TestData.json
+│   │   ├── Users.json
+│   │   ├── Test-Data/
+│   │   │   ├── login-data.csv
+│   │   │   ├── login-data.xlsx
+│   │   │   ├── login-data.yaml
+│   │   │   ├── login.json
+│   │   │   ├── registration-data.json
+│   │   │   └── seed.sql
+│   │   └── Utils/
+│   │       ├── csvReader.ts
+│   │       ├── dbReader.ts
+│   │       ├── excelReader.ts
+│   │       ├── generateExcel.js
+│   │       └── yamlReader.ts
+│   ├── 20_Page_Object_Model/
+│   │   ├── 73_NO_POM.spec.ts
+│   │   ├── 74_POM.spec.ts
+│   │   ├── 75_CartAdd_Assertion.spec.ts
+│   │   └── Pages/
+│   │       ├── CartPage.ts
+│   │       ├── InventoryPage.ts
+│   │       └── LoginPage.ts
+│   └── TaskCompletion/
+│       ├── AssertionPractice.spec.ts
+│       ├── AutomateApplitools.spec.ts
+│       ├── AutomateHover.spec.ts
+│       ├── AutomateOrangeHRM.spec.ts
+│       ├── AutomateQAProfile.spec.ts
+│       ├── Flipkart.spec.ts
+│       ├── Login_URLValidation.spec.ts
+│       ├── SelectorHub_ShadowDOM.spec.ts
+│       ├── SessionStorage.ts
+│       ├── UploadProfilepicture.spec.ts
+│       ├── Validate_KatalonCura.spec.ts
+│       └── Webtable_SelectCheckbox.spec.ts
+├── test-data/uploads/
+│   ├── sample.doc
+│   ├── sample.jpg
+│   └── sample.pdf
+├── playwright.config.ts
 ├── package.json
-├── .env.example               # copy to .env and fill in credentials
-├── tta-report/                # custom reporter output (git ignored)
-├── allure-results/            # allure raw results (git ignored)
-├── playwright-report/         # generated HTML report (git ignored)
-├── test-results/              # traces, screenshots, videos (git ignored)
+├── package-lock.json
+├── .env.example
+├── .gitignore
 └── README.md
 ```
 
@@ -230,7 +259,7 @@ LearningPlaywrightFundamentals3x/
 
 ## 5. The curriculum: how `tests/` is organised
 
-**Concept:** The `tests/` folder is a numbered syllabus, not a flat dump. Each folder is one topic, in the order it is taught, and specs inside carry a running lesson number (`225_LC.spec.ts`) so a file always maps back to the class it came from.
+**Concept:** The `tests/` folder is a numbered syllabus, not a flat dump. Each folder is one topic, in the order it is taught, and specs inside carry a running lesson number (`10_LC.spec.ts`) so a file always maps back to the class it came from.
 
 **Why:** A flat `tests/` folder stops being navigable at about fifteen files; numbered topic folders let you jump straight to the lesson you are revising and let the runner target one topic with a path filter.
 
@@ -242,37 +271,25 @@ LearningPlaywrightFundamentals3x/
 ```mermaid
 flowchart LR
     A[tests/] --> B[01-03<br/>Fundamentals<br/>basics, annotations, locators]
-    A --> C[04-16<br/>Interactions<br/>tables, frames, alerts, uploads]
-    A --> D[17-21<br/>Test design<br/>assertions, hooks, POM, fixtures]
-    A --> E[22-23<br/>Advanced<br/>AI tooling, API, BDD, CI/CD]
+    A --> C[04-16<br/>Interactions<br/>sessions, tables, frames, uploads]
+    A --> D[17-20<br/>Test design<br/>assertions, hooks, data, POM]
+    A --> E[TaskCompletion<br/>Practice exercises]
 ```
 
 | # | Topic | # | Topic |
 |---|---|---|---|
-| 01 | Basics | 13 | Shadow DOM |
-| 02 | Test Annotations | 14 | File Upload |
-| 03 | Locator Commands | 15 | File Download |
-| 04 | Session Storage | 16 | Scroll to Element |
-| 05 | Allure Reporting | 17 | Expect Assertions |
-| 06 | Multiple Element Filter | 18 | Test Hooks |
-| 07 | WebTables | 19 | Data Driven Testing |
-| 08 | Web Select, Frames, Iframe | 20 | Page Object Model |
-| 09 | Frame / Iframe | 21 | Fixture |
-| 10 | Keyboard, Hover, Drag Drop, Calendar | 22 | Misc AI Concepts |
-| 11 | JS Alerts | 23 | Advance PW Framework |
-| 12 | Handle SVG | | |
+| 01 | Basics | 11 | JS Alerts |
+| 02 | Test Annotations | 12 | Handle SVG |
+| 03 | Locator Commands | 13 | Shadow DOM |
+| 04 | Session Storage | 14 | File Upload |
+| 05 | Allure Reporting | 15 | File Download |
+| 06 | Multiple Element Filter | 16 | Scroll to Element |
+| 07 | WebTables | 17 | Expect Assertions |
+| 08 | Web Select, Dropdowns | 18 | Test Hooks |
+| 09 | Frames / Iframes | 19 | Data-Driven Testing |
+| 10 | Keyboard, Hover, Drag and Drop | 20 | Page Object Model |
 
-The last two folders branch further:
-
-```
-22_Misc_AI_Concepts/          23_Advance_PW_Framework/
-├── 01_Playwright_MCP         ├── 01_API_Testing
-├── 02_Playwright_CLI         ├── 02_Cucumber BDD
-├── 03_Playwright_AI_Agents   ├── 03_AI_Agent Factory
-├── 04_Selenium_To_PW_Migration  └── 04_CI_CD
-└── 05_SKILL_PW_36                  ├── Github Actions
-                                    └── Jenkins
-```
+`TaskCompletion/` contains independent practice exercises outside the numbered curriculum.
 
 ---
 
@@ -283,7 +300,7 @@ The last two folders branch further:
 npx playwright test
 
 # run a single file
-npx playwright test tests/01_Basics/219_tta-check.spec.ts
+npx playwright test tests/01_Basics/02_tta-check.spec.ts
 
 # run one test by title
 npx playwright test -g "admin"
@@ -310,34 +327,30 @@ npx playwright test tests/02_TestAnnotations
 The two library scripts in `01_Basics/` are not specs, so the runner skips them. Run those directly:
 
 ```bash
-npx tsx tests/01_Basics/218_normal_pw.ts
-npx tsx tests/01_Basics/217_multiple_context.ts
-npx tsx tests/04_Session_Storage/231_SessionStorage.ts   # saves user-session.json
+npx tsx tests/01_Basics/04_normalPlaywright.ts
+npx tsx tests/01_Basics/03_multipleContext.ts
+npx tsx tests/04_Session_Storage/16_SessionStorage.ts   # saves user-session.json
 ```
 
 ### Starting a new test
 
-`template/template.spec.ts` is the skeleton every lesson starts from. Copy it, change the title and the URL, and write the body where the `// Code` marker sits:
+Use `tests/01_Basics/01_example.spec.ts` as a starting point for a new test. Copy it, then change the title, URL, and assertions for your scenario:
 
 ```ts
-import { test, expect, Locator } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-test('Verify the TestCase', async ({ page }) => {
-   await page.goto("https://app.thetestingacademy.com/playwright/multiple_element_filter");
-
-    // Code
-
-   await page.pause();
+test('has title', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+  await expect(page).toHaveTitle(/Playwright/);
 });
 ```
 
 `page.pause()` opens the Inspector so you can step through and pick locators while writing. Remove it before committing, it halts the run.
 
-Run a file against the custom reporter instead of the configured ones:
+Run the reporting example:
 
 ```bash
-npx playwright test tests/05_Allure_Reporting/234_Media_Custom_Report.spec.ts \
-    --reporter=./utils/CustomReporter.ts
+npx playwright test tests/05_Allure_Reporting/18_GenerateReport.spec.ts
 ```
 
 Open the report after a run:
@@ -439,7 +452,7 @@ await page.pause();
 
 ## 8. What is inside the sample tests
 
-**tests/01_Basics/216_example.spec.ts** - the classic first test, asserts the page title. Two tests here, `viewer` and `admin`, so you can watch the runner spin up an isolated context per test and run them in parallel.
+**tests/01_Basics/01_example.spec.ts** - the classic first test, asserts the page title. Two tests here, `viewer` and `admin`, so you can watch the runner spin up an isolated context per test and run them in parallel.
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -457,9 +470,9 @@ test('admin', async ({ page }) => {
 
 Each `test()` gets its own `page`, and each `page` comes from its own fresh `BrowserContext`. That is the runner doing by hand what section 10 does manually.
 
-**tests/01_Basics/219_tta-check.spec.ts** - a codegen recording against the TTA practice site, showing `getByRole` and `getByTestId` locators on a login form.
+**tests/01_Basics/02_tta-check.spec.ts** - a codegen recording against the TTA practice site, showing `getByRole` and `getByTestId` locators on a login form.
 
-**tests/01_Basics/218_normal_pw.ts** and **217_multiple_context.ts** - plain library scripts, not specs. See sections 9 and 10.
+**tests/01_Basics/04_normalPlaywright.ts** and **03_multipleContext.ts** - plain library scripts, not specs. See sections 9 and 10.
 
 ---
 
@@ -486,7 +499,7 @@ flowchart TD
     H --> I["browser.close&#40;&#41;"]
 ```
 
-**tests/01_Basics/218_normal_pw.ts** - the hierarchy spelled out with explicit TypeScript types:
+**tests/01_Basics/04_normalPlaywright.ts** - the hierarchy spelled out with explicit TypeScript types:
 
 ```ts
 import { chromium, Browser, BrowserContext, Page } from "playwright";
@@ -513,8 +526,8 @@ Note the import: `playwright`, **not** `@playwright/test`. This is the raw libra
 Run a library script with a TypeScript executor:
 
 ```bash
-npx tsx tests/01_Basics/218_normal_pw.ts
-# or: npx ts-node tests/01_Basics/218_normal_pw.ts
+npx tsx tests/01_Basics/04_normalPlaywright.ts
+# or: npx ts-node tests/01_Basics/04_normalPlaywright.ts
 ```
 
 | | Library (`playwright`) | Test runner (`@playwright/test`) |
@@ -549,7 +562,7 @@ flowchart TD
     S2 --> X
 ```
 
-**tests/01_Basics/217_multiple_context.ts** - two isolated sessions against the same app:
+**tests/01_Basics/03_multipleContext.ts** - two isolated sessions against the same app:
 
 ```ts
 import { chromium } from "playwright";
@@ -577,7 +590,7 @@ async function multiUserTest() {
 multiUserTest();
 ```
 
-The same idea inside the test runner, where you ask for the `browser` fixture instead of `page`. **tests/01_Basics/221_TA.spec.ts** takes it to three roles:
+The same idea inside the test runner, where you ask for the `browser` fixture instead of `page`. **tests/01_Basics/06_TA.spec.ts** takes it to three roles:
 
 ```ts
 test("BCP - three roles at once", async ({ browser }) => {
@@ -627,7 +640,7 @@ flowchart TD
     B & C & D & E & F --> G[Every page in<br/>this context inherits it]
 ```
 
-**tests/01_Basics/222_Test_Options.spec.ts** - a French desktop user in Paris:
+**tests/01_Basics/07_TestOptions.spec.ts** - a French desktop user in Paris:
 
 ```ts
 test('context with options', async ({ browser }) => {
@@ -691,7 +704,7 @@ flowchart TD
     L --> R
 ```
 
-**tests/02_TestAnnotations/223_TestAnnotations.spec.ts**:
+**tests/02_TestAnnotations/08_TestAnnotations.spec.ts**:
 
 ```ts
 test.skip('checkout with PayPal', async ({ page }) => {
@@ -718,7 +731,7 @@ test('mobile layout', async ({ page, browserName }) => {
 });
 ```
 
-**tests/02_TestAnnotations/224_TestDescribe.spec.ts** - grouping with `describe`, which makes the group name part of every test title:
+**tests/02_TestAnnotations/09_TestDescribe.spec.ts** - grouping with `describe`, which makes the group name part of every test title:
 
 ```ts
 test.describe('Login Page', () => {
@@ -765,7 +778,7 @@ flowchart LR
     D --> G[Test 3<br/>already logged in]
 ```
 
-**tests/04_Session_Storage/231_SessionStorage.ts** - the one-time login that saves the state. Credentials come from `.env`, never from the source:
+**tests/04_Session_Storage/16_SessionStorage.ts** - the one-time login that saves the state. Credentials come from `.env`, never from the source:
 
 ```ts
 import { chromium } from 'playwright';
@@ -792,10 +805,10 @@ saveSession();
 It is a library script, not a spec, so run it directly:
 
 ```bash
-npx tsx tests/04_Session_Storage/231_SessionStorage.ts
+npx tsx tests/04_Session_Storage/16_SessionStorage.ts
 ```
 
-**tests/04_Session_Storage/232_TestWingify.spec.ts** - `test.use` at the top of the file applies the saved state to every test in it:
+**tests/04_Session_Storage/17_TestWingify.spec.ts** - `test.use` at the top of the file applies the saved state to every test in it:
 
 ```ts
 test.use({ storageState: './user-session.json' });
@@ -833,7 +846,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,    // fail CI if test.only is left behind
   retries: process.env.CI ? 2 : 0, // retry flaky tests on CI only
   workers: process.env.CI ? 1 : undefined,
-  reporter: [["line"], ["allure-playwright"], ["./utils/CustomReporter.ts"]],
+  reporter: [["line"], ["allure-playwright"]],
   use: {
     trace: 'on-first-retry',       // record a trace when a test retries
     headless: false                // show the browser locally
@@ -886,14 +899,13 @@ This repo's config runs two reporters:
 reporter: [["line"], ["allure-playwright"]],
 ```
 
-All three are configured, so a normal `npx playwright test` produces terminal output, Allure results and the TTA HTML report in one pass. To run *only* the custom one:
+Both are configured, so a normal `npx playwright test` produces terminal output and Allure results in one pass. Run the reporting example with:
 
 ```bash
-npx playwright test tests/05_Allure_Reporting/234_Media_Custom_Report.spec.ts \
-    --reporter=./utils/CustomReporter.ts
+npx playwright test tests/05_Allure_Reporting/18_GenerateReport.spec.ts
 ```
 
-**Capturing media.** Screenshots, video and traces are off by default. Turn all three on for a file with `test.use`, exactly as **tests/05_Allure_Reporting/234_Media_Custom_Report.spec.ts** does:
+**Capturing media.** Configure screenshots, video and traces for a test with `test.use`:
 
 ```ts
 test.use({
@@ -924,9 +936,9 @@ test('dashboard loads with media captured', async ({ page }, testInfo) => {
 | `video` | `off`, `on`, `retain-on-failure` | large, a webm per test |
 | `trace` | `off`, `on`, `on-first-retry`, `retain-on-failure` | largest, ~1.3MB per test |
 
-This repo's config sets all three to `on`, so the custom report always has media to show. That is a teaching default, not a production one: `trace: 'on'` writes roughly 1.3MB per test, which is ~180MB across the full suite. For a real suite use `only-on-failure` and `retain-on-failure`.
+The project config records a trace on the first retry and does not enable screenshots or video globally. `trace: 'on'` writes roughly 1.3MB per test, so for a real suite prefer `only-on-failure` and `retain-on-failure`.
 
-Per-step screenshots need one more thing. Playwright's own screenshot is a single shot at the end of a test, so every step would share one image. `utils/stepScreenshot.ts` attaches one per step under the name `CustomReporter` matches:
+To attach a separate screenshot to each step, capture and attach it inside that step:
 
 ```ts
 await test.info().attach(`step-${index}-${name}`, {
@@ -935,9 +947,9 @@ await test.info().attach(`step-${index}-${name}`, {
 });
 ```
 
-The `step-<index>-` prefix with a 0-based index is the contract. See section 38 for it in use.
+Use a consistent attachment name if a custom reporter needs to associate images with steps.
 
-Generated output (`tta-report/`, `allure-results/`, `reports/`) is gitignored. To view the Allure report:
+Generated Allure results are written to `allure-results/`. To view an Allure report:
 
 ```bash
 npx allure generate allure-results --clean -o allure-report && npx allure open allure-report
@@ -990,7 +1002,7 @@ flowchart LR
     B -->|networkidle| F[no requests 500ms<br/>discouraged, flaky]
 ```
 
-**tests/03_Locator_Commands/225_LC.spec.ts** - all three options together:
+**tests/03_Locator_Commands/10_LC.spec.ts** - all three options together:
 
 ```ts
 test("Verify X", async ({ page }) => {
@@ -1013,7 +1025,7 @@ test("Verify X", async ({ page }) => {
 expect(response?.status()).toBe(200);
 ```
 
-**tests/03_Locator_Commands/226_Refere.spec.ts** - the context-wide version, where every request in the session carries the header:
+**tests/03_Locator_Commands/11_Refere.spec.ts** - the context-wide version, where every request in the session carries the header:
 
 ```ts
 test("set referer for entire context", async ({ browser }) => {
@@ -1063,7 +1075,7 @@ Given this real VWO login field:
        id="login-username" data-qa="hocewoqisi" placeholder="Enter email ID">
 ```
 
-**tests/03_Locator_Commands/227_Fresh.spec.ts** anchors on the stable ids and asserts the failure message:
+**tests/03_Locator_Commands/12_Fresh.spec.ts** anchors on the stable ids and asserts the failure message:
 
 ```ts
 test('tc#1 - Verify that the vwo page is loaded', async ({ page }) => {
@@ -1120,7 +1132,7 @@ flowchart TD
     E --> H[".first&#40;&#41; / .nth&#40;i&#41;<br/>escape hatch"]
 ```
 
-**tests/03_Locator_Commands/228_Project3.spec.ts** - XPath, attribute selectors and `.first()` on the Wingify trial form:
+**tests/03_Locator_Commands/13_Project3.spec.ts** - XPath, attribute selectors and `.first()` on the Wingify trial form:
 
 ```ts
 test("Verify the error message in the wingify free trial", async ({ page }) => {
@@ -1183,7 +1195,7 @@ flowchart TD
     E --> F[Survives CSS and DOM refactors]
 ```
 
-**tests/03_Locator_Commands/229_getByRole.spec.ts** - two text fields with no usable ids:
+**tests/03_Locator_Commands/14_getByRole.spec.ts** - two text fields with no usable ids:
 
 ```ts
 test("login form fields by role", async ({ page }) => {
@@ -1197,7 +1209,7 @@ test("login form fields by role", async ({ page }) => {
 });
 ```
 
-**tests/03_Locator_Commands/230_getByRole.spec.ts** - a link, not a button, despite looking like one:
+**tests/03_Locator_Commands/15_getByRole1.spec.ts** - a link, not a button, despite looking like one:
 
 ```ts
 test("navigate via the Make Appointment link", async ({ page }) => {
@@ -1262,7 +1274,7 @@ allTextContents : ["   Alpha\n     line-two   ", "Hidden Beta", "gamma", "DeltaE
 allInnerTexts   : ["Alpha line-two",             "Hidden Beta", "GAMMA", "Delta\nEpsilon"]
 ```
 
-**tests/06_Multiple_Element_Filter/235_ME.spec.ts** - read the labels once, then act on a match:
+**tests/06_Multiple_Element_Filter/19_MultipleFilter.spec.ts** - read the labels once, then act on a match:
 
 ```ts
 const links = page.locator('a.list-group-item');
@@ -1275,7 +1287,7 @@ for (const label of labels) {
 }
 ```
 
-**tests/06_Multiple_Element_Filter/236_ME.spec.ts** - `all()`, because `getAttribute` needs real locators:
+**tests/06_Multiple_Element_Filter/20_ME.spec.ts** - `all()`, because `getAttribute` needs real locators:
 
 ```ts
 const links: Locator[] = await page.locator('a.list-group-item').all();
@@ -1321,7 +1333,7 @@ flowchart TD
     F -->|yes| G["following-sibling::td<br/>read the neighbour"]
 ```
 
-**tests/07_WebTables/237_TestCase.spec.ts** - the readable approach, one call per row:
+**tests/07_Webtables/21_Webtable_Handle.spec.ts** - the readable approach, one call per row:
 
 ```ts
 const rows = page.locator('table[summary="Sample Table"] tbody tr');
@@ -1333,7 +1345,7 @@ for (let i = 0; i < rowCount - 1; i++) {
 }
 ```
 
-**tests/07_WebTables/238_TestCase.spec.ts** - find a record, then read the cell beside it with `following-sibling`:
+**tests/07_Webtables/22_InconsistentWebtable.spec.ts** - find a record, then read the cell beside it with `following-sibling`:
 
 ```ts
 const rows = await page.locator("//table[@id='customers']/tbody/tr").count();
@@ -1390,7 +1402,7 @@ flowchart TD
     F --> G["locator&#40;'input'&#41;.click&#40;&#41;<br/>reach inside it"]
 ```
 
-**tests/07_WebTables/239_TestCase.spec.ts** - filter a link list by its label:
+**tests/07_Webtables/23_UsingFilterFunction.spec.ts** - filter a link list by its label:
 
 ```ts
 const forgottenPasswordLink = page.locator('a.list-group-item')
@@ -1401,7 +1413,7 @@ const privacyLink = page.locator('footer a').filter({ hasText: 'Privacy Policy' 
 await expect(privacyLink).toHaveAttribute('href', '#privacy-policy');
 ```
 
-**tests/07_WebTables/240_TestCase.spec.ts** - find the row by its name cell, then tick the checkbox in it:
+**tests/07_Webtables/24_WebtableUsingPseudo.spec.ts** - find the row by its name cell, then tick the checkbox in it:
 
 ```ts
 await page.locator("tr:has(td:text('Rohan.Mehta'))")
@@ -1454,7 +1466,7 @@ flowchart TD
     G --> B
 ```
 
-**tests/07_WebTables/241_WebTable_Pagination.spec.ts** - the loop written inline:
+**tests/07_Webtables/25_Webtable_Pagination.spec.ts** - the loop written inline:
 
 ```ts
 let row;
@@ -1471,7 +1483,7 @@ const email   = await row.locator('td[data-col="email"]').innerText();
 const country = await row.locator('td[data-col="country"]').innerText();
 ```
 
-**tests/07_WebTables/242_WebTable_Pagination.spec.ts** - the same logic lifted into a helper, which is the version to keep:
+**tests/07_Webtables/26_WebtablePagination_UsingFunction.spec.ts** - the same logic lifted into a helper, which is the version to keep:
 
 ```ts
 async function findRowByName(page: Page, name: string): Promise<Locator> {
@@ -1516,7 +1528,7 @@ flowchart TD
     F -->|yes| G["keyboard.press&#40;'Escape'&#41;"]
 ```
 
-**tests/08_Web_Select_Frames_Iframe/243_Select_TestCase.spec.ts** - the native case, one call:
+**tests/08_WebSelect_Dropdown/27_SelectDropdown.spec.ts** - the native case, one call:
 
 ```ts
 await page.goto("https://the-internet.herokuapp.com/dropdown");
@@ -1532,7 +1544,7 @@ await page.selectOption("#dropdown", { index: 2 });          // by position
 await page.selectOption("#langs", ["JS", "TS"]);             // multi-select
 ```
 
-**tests/08_Web_Select_Frames_Iframe/244_CustomDropDown_TestCase.spec.ts** - click to open, then pick by role:
+**tests/08_WebSelect_Dropdown/28_CustomDropdown.spec.ts** - click to open, then pick by role:
 
 ```ts
 await page.getByTestId('lang-trigger').click();
@@ -1542,7 +1554,7 @@ await page.getByTestId('experience-trigger').click();
 await page.getByText("Mid-level (4-6 years)", { exact: true }).click();
 ```
 
-**tests/08_Web_Select_Frames_Iframe/245_AdvacneCustomDropDown_TestCase.spec.ts** - the react-select family, four behaviours in one file:
+**tests/08_WebSelect_Dropdown/29_AdvanceCustomDropdown.spec.ts** - the react-select family, four behaviours in one file:
 
 ```ts
 // multi-select: the menu stays open, so Escape closes it
@@ -1591,7 +1603,7 @@ flowchart TD
     G --> H["locator&#40;'#glaf'&#41;.fill&#40;&#41;"]
 ```
 
-**tests/09_Frame_Iframe/246_Iframe_TestCase.spec.ts** - fill a form living inside one frame:
+**tests/09_Frames_iframe/30_iFrame.spec.ts** - fill a form living inside one frame:
 
 ```ts
 await page.goto('https://app.thetestingacademy.com/playwright/frames/');
@@ -1604,7 +1616,7 @@ await vehicleFrame.getByText('Submit registration', { exact: true }).click();
 const output = await vehicleFrame.locator("#vehicle-output").innerText();
 ```
 
-**tests/09_Frame_Iframe/247_Framework_TestCase.spec.ts** - enumerate the frames on a frameset page before working in one:
+**tests/09_Frames_iframe/31_MultiFrame.spec.ts** - enumerate the frames on a frameset page before working in one:
 
 ```ts
 const allFrames: Locator[] = await page.locator('//frame').all();
@@ -1618,7 +1630,7 @@ const sideFrame = page.frameLocator('[name="side"]');
 await sideFrame.getByTestId('side-link-registration').click();
 ```
 
-**tests/09_Frame_Iframe/248_Nested_Iframe_TestCase.spec.ts** - three levels deep, each chained off the last:
+**tests/09_Frames_iframe/32_NestedFrames.spec.ts** - three levels deep, each chained off the last:
 
 ```ts
 const frame1 = page.frameLocator('#pact1');
@@ -1662,7 +1674,7 @@ flowchart TD
     D -->|does not work?| E
 ```
 
-**tests/10_Keyboard_Hover_Drag_Drop_Calender/249_TestCase.spec.ts** - key presses and modifiers:
+**tests/10_Keyboard_Hover_DragDrop/33_Keyboard.spec.ts** - key presses and modifiers:
 
 ```ts
 await page.goto("https://keycode.info");
@@ -1675,14 +1687,14 @@ await page.keyboard.down('Shift');        // held down
 await page.keyboard.up('Shift');          // always pair it
 ```
 
-**tests/10_Keyboard_Hover_Drag_Drop_Calender/251_Drag_Drop.spec.ts** - the one-liner that covers most cases:
+**tests/10_Keyboard_Hover_DragDrop/35_DragAndDrop.spec.ts** - the one-liner that covers most cases:
 
 ```ts
 await page.goto('https://the-internet.herokuapp.com/drag_and_drop');
 await page.locator('#column-a').dragTo(page.locator('#column-b'));
 ```
 
-**tests/10_Keyboard_Hover_Drag_Drop_Calender/252_Advance_Drag_Drop.spec.ts** - a Kanban card, where the board needs the intermediate movement:
+**tests/10_Keyboard_Hover_DragDrop/36_AdvanceDragAndDrop.spec.ts** - a Kanban card, where the board needs the intermediate movement:
 
 ```ts
 const source = page.locator('#card-write-spec');
@@ -1696,7 +1708,7 @@ await page.mouse.move(tBox.x + tBox.width / 2, tBox.y + tBox.height / 2, { steps
 await page.mouse.up();
 ```
 
-**tests/10_Keyboard_Hover_Drag_Drop_Calender/253_Context_Drag_Drop.spec.ts** - right click, then read the menu that appears:
+**tests/10_Keyboard_Hover_DragDrop/37_ContextDragDrop.spec.ts** - right click, then read the menu that appears:
 
 ```ts
 await page.locator('span.context-menu-one').first().click({ button: 'right' });
@@ -1752,7 +1764,7 @@ flowchart TD
 | Remove it | `page.off('dialog', fn)` | automatic |
 | Use for | logging, repeated dialogs | one expected dialog |
 
-**tests/11_JS_Alerts/254_JS_Alerts.spec.ts** - the pattern, with the listener attached first:
+**tests/11_JS_Alerts/38_JSAlerts.spec.ts** - the pattern, with the listener attached first:
 
 ```ts
 test('JS Alert accept', async ({ page }) => {
@@ -1806,7 +1818,7 @@ flowchart TD
     C & D & E --> F["getAttribute&#40;'class'&#41;<br/>not .className"]
 ```
 
-**tests/12_Handle_SVG/256_SVG_Advance_TC.spec.ts** - clicking shapes and reading chart bar data:
+**tests/12_Handle_SVG/40_SVG_Advance.spec.ts** - clicking shapes and reading chart bar data:
 
 ```ts
 await page.locator('#circle-blue').click();
@@ -1821,7 +1833,7 @@ for (const bar of await page.locator('.bar').all()) {
 }
 ```
 
-**tests/12_Handle_SVG/257_SVG_Map_TC.spec.ts** - an interactive map, where each state is a `<path>` carrying an ISO code in its class:
+**tests/12_Handle_SVG/41_SVG_Map.spec.ts** - an interactive map, where each state is a `<path>` carrying an ISO code in its class:
 
 ```ts
 const states = await page.locator(
@@ -1836,7 +1848,7 @@ for (const state of states) {
 }
 ```
 
-**tests/12_Handle_SVG/258_SVG_Map_TC_Optimized.spec.ts** - the same idea with a plain CSS `path` selector, which is shorter but matches every path on the page.
+**tests/12_Handle_SVG/42_SVG_Map_Optimized.spec.ts** - the same idea with a plain CSS `path` selector, which is shorter but matches every path on the page.
 
 **The version to keep.** Scanning every path and testing the class in JavaScript is a loop over the whole map. Playwright can do the filtering in the selector, which is one round trip instead of forty:
 
@@ -1877,7 +1889,7 @@ flowchart TD
     D --> F["XPath still fails here<br/>use CSS instead"]
 ```
 
-**tests/13_Shadow_DOM/259_Shadow_DOM_TC.spec.ts** - scoping to the host, then reaching inside it:
+**tests/13_Shadow_DOM/43_Shadow_DOM.spec.ts** - scoping to the host, then reaching inside it:
 
 ```ts
 const card = page.getByTestId('card-account-card');
@@ -1934,16 +1946,16 @@ flowchart TD
     D -->|no| F[silently dropped,<br/>no error thrown]
 ```
 
-**tests/14_FileUpload/260_FileUpload_TC.spec.ts** - one real file, asserted:
+**tests/14_FileUpload/44_FileUpload.spec.ts** - one real file, asserted:
 
 ```ts
-const filePath = path.join(__dirname, 'testdata.txt');
+const filePath = path.join(__dirname, 'TestData.txt');
 await page.locator("#file-upload").setInputFiles([filePath]);
 await page.getByRole("button", { name: "Upload" }).click();
-await expect(page.locator('#uploaded-files')).toContainText('testdata.txt');
+await expect(page.locator('#uploaded-files')).toContainText('TestData.txt');
 ```
 
-**tests/14_FileUpload/262_Multiple_FileUpload_TC.spec.ts** - several files invented in memory:
+**tests/14_FileUpload/46_Multi_FileUpload.spec.ts** - several files invented in memory:
 
 ```ts
 await page.locator("div.pf-v6-c-multiple-file-upload input").setInputFiles([
@@ -1952,7 +1964,7 @@ await page.locator("div.pf-v6-c-multiple-file-upload input").setInputFiles([
 ]);
 ```
 
-**tests/14_FileUpload/264_Mixed_FileUpload_TC.spec.ts** - three MIME types at once, read from disk:
+**tests/14_FileUpload/48_Mixed_FileUpload.spec.ts** - three MIME types at once, read from disk:
 
 ```ts
 const files = [
@@ -1975,7 +1987,7 @@ image/jpeg,.jpg,.jpeg,application/msword,.doc,application/pdf,.pdf,image/png,.pn
 
 A `.docx` passed to `setInputFiles` is accepted by the call and then **discarded by the browser**, with the widget quietly reporting "2 of 2 files uploaded". `.doc` is on the list, `.docx` is not. Nothing throws. The `toContainText` assertions above are what turn that into a failing test instead of a false pass.
 
-**tests/14_FileUpload/265_FileUpload_OtherDir_TC.spec.ts** - fixtures kept in a shared folder rather than beside the spec:
+**tests/14_FileUpload/49_FileUpload_OtherDir.spec.ts** - fixtures kept in a shared folder rather than beside the spec:
 
 ```ts
 const UPLOAD_DIR = path.join(__dirname, '..', '..', 'test-data', 'uploads');
@@ -2017,7 +2029,7 @@ sequenceDiagram
     Note over T,P: Click first and the event fires<br/>with nobody listening, then it is lost
 ```
 
-**tests/15_File_Download/266_FileDownload_TC.spec.ts**:
+**tests/15_FileDownload/50_FileDownload_TC.spec.ts**:
 
 ```ts
 const [staticDownload] = await Promise.all([
@@ -2074,7 +2086,7 @@ flowchart TD
     A -->|jump the page| E["evaluate&#40;window.scrollTo&#41;<br/>or keyboard End"]
 ```
 
-**tests/16_Scroll_toElement/267_Scroll_TC.spec.ts** - the four ways to move the page:
+**tests/16_ScrollToElement/51_ScrollTo.spec.ts** - the four ways to move the page:
 
 ```ts
 await page.getByTestId("deep-anchor").scrollIntoViewIfNeeded();   // to an element
@@ -2083,7 +2095,7 @@ await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));  // t
 await page.evaluate(() => window.scrollTo(0, 0));                 // back to the top
 ```
 
-**tests/16_Scroll_toElement/268_Lazy_Scroll_TC.spec.ts** - the real lesson, a list that grows when you reach it:
+**tests/16_ScrollToElement/52_Lazy_ScrollTo.spec.ts** - the real lesson, a list that grows when you reach it:
 
 ```ts
 const list = page.getByTestId('lazy-list').locator('li');
@@ -2106,7 +2118,7 @@ await expect.poll(async () => list.count(), {
 
 `expect.poll()` is the tool for a value that is not a locator. It re-runs the function until the matcher passes or the timeout expires, which is what makes "the list grew" assertable without a `waitForTimeout`.
 
-**tests/16_Scroll_toElement/269_Abort_Signal_Scroll_TC.spec.ts** - cancelling a wait with an `AbortSignal` (Playwright 1.62+):
+**tests/16_ScrollToElement/53_AbortSignal_Scroll.spec.ts** - cancelling a wait with an `AbortSignal` (Playwright 1.62+):
 
 ```ts
 const controller = new AbortController();
@@ -2149,7 +2161,7 @@ flowchart TD
     D --> G["expect&#40;1 + 2&#41;.toBe&#40;3&#41;"]
 ```
 
-**tests/17_Expect_Assertions/270_Expect1.spec.ts** - plain value matchers, no `await`:
+**tests/17_Expect_Assertions/54_Expect1.spec.ts** - plain value matchers, no `await`:
 
 ```ts
 expect(1 + 2).toBe(3);
@@ -2160,7 +2172,7 @@ expect([1, 2, 3]).toEqual([1, 2, 3]);
 expect({ age: 20, role: 'admin' }).toEqual({ role: 'admin', age: 20 });  // key order is irrelevant
 ```
 
-**tests/17_Expect_Assertions/271_Expect2.spec.ts** - web-first matchers, every one awaited:
+**tests/17_Expect_Assertions/55_Expect2.spec.ts** - web-first matchers, every one awaited:
 
 ```ts
 const heading = page.getByText('multiple element filters', { exact: true });
@@ -2172,7 +2184,7 @@ await expect(email).toHaveAttribute('type', 'email');
 await expect(page.locator('footer a')).toHaveCount(16);
 ```
 
-**tests/17_Expect_Assertions/272_Expect3.spec.ts** - soft assertions and negation:
+**tests/17_Expect_Assertions/56_Expect3.spec.ts** - soft assertions and negation:
 
 ```ts
 // Soft: each line records its own failure, the test carries on.
@@ -2188,7 +2200,7 @@ expect(await page.title()).not.toContain('error');
 
 Use soft assertions when you are checking several independent properties of one page and want the whole picture from a single run. Use a hard assertion for anything the rest of the test depends on.
 
-**tests/17_Expect_Assertions/273_Expect4.spec.ts** - state matchers:
+**tests/17_Expect_Assertions/57_Expect4.spec.ts** - state matchers:
 
 ```ts
 await expect(submitBtn).toBeVisible();
@@ -2234,7 +2246,7 @@ flowchart TD
     D --> E["afterAll<br/>tear down"]
 ```
 
-**tests/18_Test_hooks/277_Tk.spec.ts** - the full hook cycle, including a conditional screenshot:
+**tests/18_TestHooks/60_TestExecution.spec.ts** - the full hook cycle, including a conditional screenshot:
 
 ```ts
 test.beforeAll(async () => {
@@ -2254,7 +2266,7 @@ test.afterEach(async ({ page }, testInfo) => {
 
 That `testInfo.status !== testInfo.expectedStatus` comparison is the correct failure check. It stays right for tests marked `test.fail()`, where a *pass* is the unexpected outcome.
 
-**tests/18_Test_hooks/276_Test.spec.ts** - steps, which show up as a timed breakdown in the report:
+**tests/18_TestHooks/59_TestStep.spec.ts** - steps, which show up as a timed breakdown in the report:
 
 ```ts
 await test.step('open practice page', async () => {
@@ -2266,7 +2278,7 @@ await test.step('fields are visible', async () => {
 });
 ```
 
-**tests/18_Test_hooks/274_Test.spec.ts** - conditional modifiers, which take a boolean and a reason:
+**tests/18_TestHooks/58_Test.spec.ts** - conditional modifiers, which take a boolean and a reason:
 
 ```ts
 test('title test', async ({ page, browserName }) => {
@@ -2280,7 +2292,7 @@ test('email is visible', async ({ page, browserName }) => {
 });
 ```
 
-**tests/18_Test_hooks/278.td.spec.ts** - a serial group beside independent tests:
+**tests/18_TestHooks/61_TestDescribe.spec.ts** - a serial group beside independent tests:
 
 ```ts
 test.describe.serial('Checkout suite — must run in order', () => {
@@ -2294,7 +2306,7 @@ test('standalone A', async () => {});
 test('standalone B', async () => {});
 ```
 
-**tests/18_Test_hooks/279.tp.spec.ts** - tags in the title, filtered from the CLI:
+**tests/18_TestHooks/62_TestPriority.spec.ts** - tags in the title, filtered from the CLI:
 
 ```ts
 test('Login test @p1 @smoke', async ({ page }) => { /* ... */ });
@@ -2349,7 +2361,7 @@ flowchart TD
 | 289 | MySQL | **async** | steps, skips if unconfigured |
 | 290 | faker | sync | test per row, seeded |
 
-**The sync case.** `tests/19_Data_Driven_Testing/288_DDT_YAML.spec.ts`, read at module load so each row becomes a real test:
+**The sync case.** `tests/19_DataDriven_Testing/70_DDT_YAML.spec.ts`, read at module load so each row becomes a real test:
 
 ```ts
 const loginData = readYAML<LoginRow>(path.join(__dirname, 'test-data', 'login-data.yaml'));
@@ -2363,7 +2375,7 @@ for (const data of loginData) {
 }
 ```
 
-**The async case.** `tests/19_Data_Driven_Testing/287_DDT_EXCEL.spec.ts`, because `exceljs` returns a Promise:
+**The async case.** `tests/19_DataDriven_Testing/69_DDT_EXCEL.spec.ts`, because `exceljs` returns a Promise:
 
 ```ts
 let rows: LoginRow[] = [];
@@ -2382,15 +2394,15 @@ test('login with every row from the spreadsheet', async ({ page }) => {
 
 Each step still appears separately in the report, but the rows share one test, so they share one retry.
 
-**The database case.** `tests/19_Data_Driven_Testing/289_DDT_MYSQL.spec.ts` adds a guard so the repo stays green without a database:
+**The database case.** `tests/19_DataDriven_Testing/71_DDT_MySQL.spec.ts` adds a guard so the repo stays green without a database:
 
 ```ts
 test.skip(!isDbConfigured(), 'MYSQL_HOST is not set, see .env.example');
 ```
 
-Seed it once with `mysql -u root -p < tests/19_Data_Driven_Testing/test-data/seed.sql`, then set `MYSQL_HOST` in `.env`.
+Seed it once with `mysql -u root -p < tests/19_DataDriven_Testing/Test-Data/seed.sql`, then set `MYSQL_HOST` in `.env`.
 
-**The generated case, and its one rule.** `tests/19_Data_Driven_Testing/290_DDT_FAKER.spec.ts` invents data instead of reading it:
+**The generated case, and its one rule.** `tests/19_DataDriven_Testing/72_DDT_FAKER.spec.ts` invents data instead of reading it:
 
 ```ts
 // The seed MUST be fixed. Playwright evaluates this file once to collect tests
@@ -2409,7 +2421,7 @@ const users = faker.helpers.multiple(() => ({
 
 Run a different dataset with `FAKER_SEED=424242 npx playwright test ...`, and keep that number to replay a failure exactly.
 
-**Readers** live in `tests/19_Data_Driven_Testing/util/`: `csvReader.ts`, `excelReader.ts`, `yamlReader.ts`, `dbReader.ts`, and `generateExcel.js` to rebuild the spreadsheet. They all return the same `LoginRow` shape, which is what lets one page be driven by six different sources.
+**Readers** live in `tests/19_DataDriven_Testing/util/`: `csvReader.ts`, `excelReader.ts`, `yamlReader.ts`, `dbReader.ts`, and `generateExcel.js` to rebuild the spreadsheet. They all return the same `LoginRow` shape, which is what lets one page be driven by six different sources.
 
 ```bash
 npm i -D exceljs js-yaml @types/js-yaml mysql2 @faker-js/faker@9
@@ -2428,7 +2440,7 @@ Note the `@9` on faker: version 10 is ESM-only and this repo is CommonJS.
 **Q&A - why use this?**
 - **Q: Why are the locators built in the constructor rather than as class fields?** A: A `Locator` is bound to one `Page`, and the page does not exist until a test hands one over. Playwright gives every test a fresh `page` fixture, so the constructor is the first moment one is available.
 - **Q: What does `readonly` actually do?** A: It is a compile-time guard. Assignment is allowed inside the constructor and rejected everywhere after, so a stray `=` in a test cannot silently rebind a locator. It is erased at runtime and does not freeze anything.
-- **Q: Is a big page object expensive?** A: No, and this is the point of `HeavyPage.ts`. Locators are lazy, building one records a selector and never touches the browser. 100 of them construct in about 1ms.
+- **Q: Are locators resolved when the page object is constructed?** A: No. Playwright locators are lazy and resolve against the page when an action or assertion uses them.
 
 ```mermaid
 flowchart TD
@@ -2440,7 +2452,7 @@ flowchart TD
     E --> F[test reads as intent,<br/>selectors live in one file]
 ```
 
-**tests/20_Page_Object_Model/pages/LoginPage.ts** - locators plus the action that uses them:
+**tests/20_Page_Object_Model/Pages/LoginPage.ts** - locators plus the action that uses them:
 
 ```ts
 export class LoginPage {
@@ -2468,18 +2480,16 @@ export class LoginPage {
 }
 ```
 
-**tests/20_Page_Object_Model/293_cart_add_assertion.spec.ts** - three page objects in one flow:
+**tests/20_Page_Object_Model/75_CartAdd_Assertion.spec.ts** - three page objects in one flow:
 
 ```ts
 await test.step('login as standard_user', async () => {
     await loginPage.login('standard_user', 'tta_secret');
     await expect(inventoryPage.title).toHaveText('Products');
-    await shot(page, 1, 'inventory');
 });
 
 await test.step('add the first item to the cart', async () => {
     itemName = await inventoryPage.addFirstItemToCart();   // returns the name
-    await shot(page, 2, 'item added');
 });
 
 await test.step('verify the item is in the cart', async () => {
@@ -2489,7 +2499,7 @@ await test.step('verify the item is in the cart', async () => {
 
 `addFirstItemToCart()` returns the product name so the cart assertion checks the item that was actually added. That is the kind of logic worth putting in a page object.
 
-**Compare 291 and 292.** `291_No_POM.spec.ts` inlines the locators; `292_POM.spec.ts` is the same test through `LoginPage`. Run both to see what moves out of the spec.
+**Compare lessons 73 and 74.** `73_NO_POM.spec.ts` inlines the locators; `74_POM.spec.ts` is the same test through `LoginPage`. Run both to see what moves out of the spec.
 
 **Where the test id attribute belongs.** TTACart tags elements with `data-test`, while `getByTestId()` looks for `data-testid`, so those calls silently match nothing. Rather than make every spec declare `test.use({ testIdAttribute: 'data-test' })`, each page object owns the detail:
 
@@ -2504,27 +2514,7 @@ constructor(page: Page) {
 
 `selectors.setTestIdAttribute()` and the `testIdAttribute` config key both exist, but both are global, and the TTA practice pages in earlier modules genuinely use `data-testid`. Scoping it to the page object is what keeps both apps working.
 
-**Why a fat page object is cheap.** `pages/HeavyPage.ts` carries 100 locators and 112 methods on purpose, and `294_heavy_page.spec.ts` measures it:
-
-```ts
-const heavy = new HeavyPage(page);          // 100 locators, ~1ms
-const methods = Object.getOwnPropertyNames(HeavyPage.prototype);
-
-const another = new HeavyPage(page);        // 100 more locators
-expect(Object.getOwnPropertyNames(HeavyPage.prototype).length)
-    .toBe(methods.length);                  // but zero more methods
-```
-
-Locators are per-instance and lazy; methods live on the prototype and are shared. Neither grows the cost of a test that uses one of them.
-
-**Per-step screenshots.** `utils/stepScreenshot.ts` attaches a screenshot named `step-<index>-<name>`, which is the prefix `CustomReporter` matches to pin an image to each `test.step` (see section 15):
-
-```ts
-await test.step('open the cart', async () => {
-    await inventoryPage.openCart();
-    await shot(page, 3, 'cart');
-});
-```
+The page objects in `tests/20_Page_Object_Model/Pages/` are `LoginPage`, `InventoryPage`, and `CartPage`. Keep selectors and reusable page actions in those classes, and keep scenario-specific assertions in the test.
 
 | Put in the page object | Keep in the test |
 |---|---|
